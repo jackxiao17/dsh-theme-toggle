@@ -1,0 +1,9 @@
+# OS / 编辑器杂项
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地临时
+*.log
+*.tmp
+node_modules/

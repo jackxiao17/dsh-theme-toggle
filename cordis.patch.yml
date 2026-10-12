@@ -1,0 +1,5 @@
+# dsh-theme-toggle bundle 层：插入主题切换插件行。
+- insert:
+    - id: theme-toggle
+      name: 'dsh-theme-toggle'
+      config: {}
