@@ -8,7 +8,7 @@
 git clone https://github.com/jackxiao17/dsh-theme-toggle.git
 ```
 
-或到 [Releases 页面](https://github.com/jackxiao17/dsh-theme-toggle/releases)下载最新版解压，得到 `dsh-theme-toggle/` 文件夹。
+不想用 git 的话，在仓库页面点 **Code → Download ZIP** 下载压缩包，解压得到 `dsh-theme-toggle/` 文件夹即可。
 
 ## 安装
 
