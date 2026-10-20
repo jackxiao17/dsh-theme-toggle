@@ -8,7 +8,8 @@
  *   4. 点击取反：setTheme 收到 dark / light，图标随之翻转；
  *   5. theme/change 事件与 DOM 观察两条同步路径都能刷新图标；
  *   6. system 偏好（DOM 深色）下点击 → 显式 light；
- *   7. wide / rail 两种宿主形态渲染一致（控件不依赖 wide）。
+ *   7. wide / rail 两种宿主形态渲染一致（控件不依赖 wide）；
+ *   8. 主题服务抛错或异步拒绝时，点击不向宿主抛出也不留下未处理 rejection。
  *
  * 运行：node tools/smoke-test.cjs
  */
@@ -159,5 +160,19 @@ check("DOM 深色点击 → setTheme('light')", setThemeCalls.at(-1) === "light"
 
 // 6. wide / rail 渲染一致
 check("wide 与 rail 渲染一致", JSON.stringify(render({ wide: true })) === JSON.stringify(render({ wide: false })));
+
+// 7. 主题服务异常时不把错误抛给宿主（回归）
+const realSetTheme = ctx.theme.setTheme;
+let threw = false;
+ctx.theme.setTheme = () => { throw new Error("boom"); };
+try { render().props.onClick(); } catch { threw = true; }
+check("setTheme 同步抛错时点击不外抛", threw === false);
+
+// 异步拒绝若未被 catch，Node 会以未处理 rejection 终止进程——这条即是该场景的回归
+threw = false;
+ctx.theme.setTheme = () => Promise.reject(new Error("nope"));
+try { render().props.onClick(); } catch { threw = true; }
+check("setTheme 异步拒绝时点击不外抛", threw === false);
+ctx.theme.setTheme = realSetTheme;
 
 console.log(`smoke: ${passed} 项通过${process.exitCode ? "，存在失败" : ""}`);

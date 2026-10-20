@@ -1,18 +1,23 @@
 {
   "name": "dsh-theme-toggle",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "DSH 一键深浅色切换：侧栏底部注入 36px 太阳/月亮图标按钮，点击即在浅色与深色间切换，偏好经设置作用域持久化，设置页「外观」行自动同步。One-click light/dark toggle button for DeepSeek Harness.",
   "license": "MIT",
+  "icon": "./icon.svg",
   "type": "module",
   "main": "./lib/index.js",
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
+    "./icon": "./icon.svg",
+    "./locale/*.json": "./locale/*.json",
     "./package.json": "./package.json"
   },
   "files": [
     "lib",
     "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json",
     "README.md",
     "LICENSE"
   ],

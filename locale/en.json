@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Light/Dark Toggle",
+    "description": "One-click light/dark toggle in the sidebar footer: a 36px sun/moon button, preference persisted through the settings scope, two-way sync with the Settings → Appearance row."
+  }
+}

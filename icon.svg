@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="tt-title">
+  <title id="tt-title">深浅色切换</title>
+  <defs>
+    <!-- 日：浅金 → 深琥珀（左上打光） -->
+    <linearGradient id="tt-gold" gradientUnits="userSpaceOnUse" x1="14" y1="12" x2="48" y2="44">
+      <stop offset="0" stop-color="#f7d489"/>
+      <stop offset="1" stop-color="#d8871f"/>
+    </linearGradient>
+    <!-- 月：宝蓝 → 青（上到下），冷色带与暖金互补 -->
+    <linearGradient id="tt-blue" gradientUnits="userSpaceOnUse" x1="16" y1="8" x2="44" y2="58">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <!-- 月牙：外弧绕左下、内弧浅浅切回，两角朝上左与右下，把太阳抱在怀里 -->
+  <path d="M14.29 17.2A23 23 0 1 0 46.8 49.71A26 26 0 0 1 14.29 17.2Z"
+        fill="none" stroke="url(#tt-blue)" stroke-width="3.2" stroke-linejoin="round"/>
+  <!-- 日轮：空心圆环，中心留出负空间 -->
+  <circle cx="35" cy="27" r="9.5" fill="none" stroke="url(#tt-gold)" stroke-width="3"/>
+  <!-- 八道等距射线，收在月牙内弧留出的空腔里，不压月牙线 -->
+  <path d="M47 27H50.5M43.49 18.51L45.96 16.04M35 15V11.5M26.51 18.51L24.04 16.04M23 27H19.5M26.51 35.49L24.04 37.96M35 39V42.5M43.49 35.49L45.96 37.96"
+        fill="none" stroke="url(#tt-gold)" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

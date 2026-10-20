@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.jpg" width="360" alt="dsh-theme-toggle：金日抱月">
+</p>
+
 # dsh-theme-toggle
 
 给 DSH（DeepSeek Harness）加一个**一键深浅色切换按钮**：侧栏底部、「会话回收站」等原生按钮旁边多一个 36px 的太阳/月亮图标按钮，点一下就在浅色与深色之间切换，不用再进「设置 → 外观」翻三选一。偏好经设置作用域持久化，设置页「外观」行与本按钮实时联动。
@@ -64,7 +68,8 @@ dsh plugin --profile desktop rm dsh-theme-toggle
 本仓库就是插件的开发源码。要点：
 
 - **免构建**：`lib/client.js` 是 DSH 直接加载的 Cordis client bundle，改完重启 DSH 即生效，无需编译。
-- **本机开发可软链**：工作电脑上 `~/.dsh/profiles/desktop/node_modules/dsh-theme-toggle` 是指向本仓库目录的 junction，改完重启即生效；换机器开发则用「覆盖拷贝到 `local/` 和 `node_modules/` 两处 + 重启」的方式（只拷一处可能因硬链接断裂而加载旧代码）。
+- **file: 安装（与 dsh-session-cleaner 同款）**：profile 的 `package.json` 里声明 `"dsh-theme-toggle": "file:./local/dsh-theme-toggle"`，插件实体在 `~/.dsh/profiles/desktop/local/dsh-theme-toggle/`，pnpm（hoisted 模式）把它硬链到 `node_modules/dsh-theme-toggle/`。安装不依赖本仓库路径——工作区移动、改名、删库都不影响已装插件。
+- **同步改动**：改完本仓库后，把改动覆盖拷贝到 `local/dsh-theme-toggle/` 和 `node_modules/dsh-theme-toggle/` **两处**再重启 DSH（两处是硬链接，只拷一处可能因硬链接断裂而加载旧代码）；也可以在 local/ 更新后跑一次 profile 的 pnpm install。
 - **改完顺手升 `package.json` 的 version**，重启后一眼确认新版本生效。
 - 改动确认无误后提交推送到本仓库，保证 GitHub 上的代码和本机跑的一致。
 - 自带的开发工具（不随插件发布）：`tools/smoke-test.cjs` 桩件冒烟测试（`node tools/smoke-test.cjs`）、`tools/asar-read.cjs` 从 app.asar 抽官方源码核对契约。
